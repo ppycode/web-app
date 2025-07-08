@@ -23,7 +23,7 @@ jobs:
         USER: ec2-user
         KEY: ${{ secrets.SSH_KEY }}
       run: |
-        echo "$KEY" > key.pem
-        chmod 600 key.pem
-        scp -o StrictHostKeyChecking=no -i key.pem index.html $USER@$HOST:/tmp/index.html
-        ssh -o StrictHostKeyChecking=no -i key.pem $USER@$HOST "sudo mv /tmp/index.html /usr/share/nginx/html/index.html && sudo systemctl restart nginx"
+        echo "$KEY" > webapp.pem
+        chmod 600 webapp.pem
+        scp -o StrictHostKeyChecking=no -i webapp.pem index.html $USER@$HOST:/tmp/index.html
+        ssh -o StrictHostKeyChecking=no -i webapp.pem $USER@$HOST "sudo mv /tmp/index.html /usr/share/nginx/html/index.html && sudo systemctl restart nginx"
